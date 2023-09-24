@@ -1,0 +1,23 @@
+spring:
+  datasource:
+#    url: jdbc:postgresql://localhost:5432/ems-fullstack
+    url: jdbc:postgresql://localhost:5433/ems-fullstack
+    username: ems-fullstack
+    password: 123456a@
+
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
+
+#    properties:
+#      hibernate:
+#        dialect: org.hibernate.dialect.MySQLDialect
+#        ddl-auto: update
+#  datasource:
+#    url: jdbc:mysql://localhost:3306/my_database
+#    username: my_user
+#    password: 123456@
+
+server:
+  port: 8089
