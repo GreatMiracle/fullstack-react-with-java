@@ -9,7 +9,7 @@ const HeaderComponent = () => {
                     <a className="navbar-brand" href="/employees">Employee</a>
                     <a className="navbar-brand" href="/add-employee">Add Employee</a>
                     <a className="navbar-brand" href="/departments">Department</a>
-                    <a className="navbar-brand" href="/departments">Department</a>
+                    <a className="navbar-brand" href="/add-department">Add Department</a>
                 </nav>
 
             </header>

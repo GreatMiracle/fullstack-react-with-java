@@ -1,33 +1,27 @@
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { getAllDepartments } from '../../services/DepartmentService';
+import { deleteDepartment, getAllDepartments } from '../../services/DepartmentService';
 
 const ListDepartmentComponent = () => {
   const [departments, setDepartments] = useState([]);
   const navigator = useNavigate()
 
   useEffect(() => {
-    getAllDepartments()
-      .then((response) => {
-        // Xử lý phản hồi thành công
-        console.log('kien', response.data);
-        return setDepartments(response.data);
-      })
-      .catch((error) => {
-        // Xử lý lỗi hoặc timeout
-        if (error.response) {
-          console.log('Lỗi phản hồi từ server:', error.response.data);
-        } else {
-          console.log('Lỗi kết nối:', error.message);
-        }
-      });
+    funcGetAllDepartments();
   }, []);
 
   const updateDepartment = (id) => {
     navigator(`/add-department/${id}`)
   };
 
-  const removeDepartment = () => {};
+  const removeDepartment = (id) => {
+    deleteDepartment(id)
+    .then(() => {
+      funcGetAllDepartments()
+    }).catch((err) => {
+      console.error(err);
+    });
+  };
 
   return (
     <div className="container">
@@ -69,6 +63,30 @@ const ListDepartmentComponent = () => {
       </table>
     </div>
   );
+
+
+  function funcGetAllDepartments() {
+    getAllDepartments()
+      .then((response) => {
+        // Xử lý phản hồi thành công
+        console.log('kien', response.data);
+        navigator('/departments')
+        return setDepartments(response.data);
+      })
+      .catch((error) => {
+        // Xử lý lỗi hoặc timeout
+        if (error.response) {
+          console.log('Lỗi phản hồi từ server:', error.response.data);
+        } else {
+          console.log('Lỗi kết nối:', error.message);
+        }
+      });
+  }
+  
+
 };
 
 export default ListDepartmentComponent;
+
+
+
