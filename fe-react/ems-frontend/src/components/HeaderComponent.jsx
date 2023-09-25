@@ -1,20 +1,46 @@
 
 
 const HeaderComponent = () => {
-    return (
+  return (
+  <div>
+    <header>
+      <nav className='navbar navbar-dark bg-dark'>
         <div>
-            <header>
-                <nav className='navbar navbar-dark bg-dark'>
-                    <a className="navbar-brand " href="/home">Home</a>
-                    <a className="navbar-brand" href="/employees">Employee</a>
-                    <a className="navbar-brand" href="/add-employee">Add Employee</a>
-                    <a className="navbar-brand" href="/departments">Department</a>
-                    <a className="navbar-brand" href="/add-department">Add Department</a>
-                </nav>
-
-            </header>
+          <a className="navbar-brand " href="/home">Home</a>
         </div>
-    )
+
+        <div>
+          <a className="navbar-brand" href="/employees">Employee</a>
+        </div>
+
+        <div>
+            <a className="navbar-brand" href="/add-employee">Employee Management</a>
+        </div>
+
+        <div>
+          <a className="navbar-brand" href="/departments">Department</a>
+        </div>
+
+        <div>
+          <a className="navbar-brand" href="/add-department">Department Management</a>
+        </div>
+          
+        <div>
+          <a className="navbar-brand" href="/todos">Todo</a>
+        </div>
+          
+        <div>
+          <a className="navbar-brand" href="/add-todo">Todo Management</a>
+        </div>  
+          
+          
+        
+
+      </nav>
+        
+    </header>
+  </div>
+)
 
 
 }

@@ -8,6 +8,10 @@ import HomePage from './components/HomePage';
 import ListEmployeeComponent from './components/employee/ListEmployeeComponent';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import DepartmentComponent from './components/department/DepartmentComponent';
+import ListTodoComponent from './components/todo/ListTodoComponent';
+import TodoComponent from './components/todo/TodoComponent';
+import RegisterComponent from './components/login/RegisterComponent';
+import LoginComponent from './components/login/LoginComponent';
 
 function App() {
 
@@ -44,6 +48,15 @@ function App() {
             path="/add-department/:id"
             element={<DepartmentComponent />}
           ></Route>
+
+          {/* Todo */}
+          <Route path='/todos' element = { <ListTodoComponent /> }></Route>
+          <Route path='/add-todo' element = { <TodoComponent /> }></Route>
+          <Route path='/update-todo/:id' element = { <TodoComponent /> }></Route>
+
+          <Route path='/register' element = { <RegisterComponent />}></Route>
+          <Route path='/login' element = { <LoginComponent /> }></Route>
+
         </Routes>
         <FooterComponent />
       </BrowserRouter>
