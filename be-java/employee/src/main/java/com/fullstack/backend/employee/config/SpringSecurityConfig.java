@@ -32,7 +32,7 @@ public class SpringSecurityConfig {
 //                            authorize.requestMatchers(HttpMethod.PATCH, "/api/**").hasAnyRole("ADMIN", "USER");
 //                            authorize.requestMatchers(HttpMethod.GET, "/api/**").permitAll();
                             authorize.requestMatchers("/api/auth/**").permitAll();
-                            authorize.requestMatchers(HttpMethod.OPTIONS, "/**").permitAll();
+                            authorize.requestMatchers(HttpMethod.OPTIONS, "/**").permitAll(); //cái này để phục vụ CORS từ FE, comment đi là hẹo ko call api đc
                             authorize.anyRequest().authenticated();
                         }
                 ).httpBasic(Customizer.withDefaults());
