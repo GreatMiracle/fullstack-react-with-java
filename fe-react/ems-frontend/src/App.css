@@ -28,3 +28,10 @@
     text-align: center;
     color: white;
 }
+
+.centered {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Để đảm bảo phần tử chiếm toàn bộ chiều cao của trình duyệt */
+}

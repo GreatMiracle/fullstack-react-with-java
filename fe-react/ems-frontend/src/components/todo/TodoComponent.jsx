@@ -12,7 +12,7 @@ const TodoComponent = () => {
     const { id } = useParams()
 
 
-    function saveOrUpdateTodo(e){
+    async function saveOrUpdateTodo(e){
         e.preventDefault()
 
         const todo = {title, description, completed}
@@ -20,14 +20,14 @@ const TodoComponent = () => {
 
         if(id){
 
-            updateTodo(id, todo).then(() => {
+            await updateTodo(id, todo).then(() => {
                 navigate('/todos')
             }).catch(error => {
                 console.error(error);
             })
 
         }else{
-            saveTodo(todo).then((response) => {
+            await saveTodo(todo).then((response) => {
                 console.log(response.data)
                 navigate('/todos')
             }).catch(error => {

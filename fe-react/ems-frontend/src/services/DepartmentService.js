@@ -1,4 +1,5 @@
-import axios from 'axios';
+// import axios from 'axios';
+import axios from "./AxiosInterceptor";
 
 const DEPARTMENT_REST_API_BASE_URL = 'http://localhost:8089/api/departments';
 
