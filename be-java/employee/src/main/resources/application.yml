@@ -29,6 +29,6 @@ spring:
 
 jwt:
   jwt-secret: f543cdc4507065052f7021af4271495412db83c6952b6ff2c6d2a322ed44073d
-  jwt-expiration: 600000
+  jwt-expiration: 6000000
 server:
   port: 8089
