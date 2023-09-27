@@ -1,5 +1,8 @@
 package com.fullstack.backend.employee.config;
 
+import com.fullstack.backend.employee.security.JwtAuthenticationEntryPoint;
+import com.fullstack.backend.employee.security.JwtAuthenticationFilter;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -15,14 +18,23 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @EnableMethodSecurity
 @Configuration
+@RequiredArgsConstructor
 public class SpringSecurityConfig {
+
+    private final JwtAuthenticationEntryPoint entryPoint;
+    private final JwtAuthenticationFilter jwtAuthenticationFilter;
 
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf().disable()
+                .exceptionHandling()
+                .authenticationEntryPoint(entryPoint)
+                .accessDeniedHandler(entryPoint)
+                .and()
                 .authorizeHttpRequests(
                         (authorize) -> {
 //                            authorize.requestMatchers(HttpMethod.POST, "/api/**").hasRole("ADMIN");
@@ -36,6 +48,9 @@ public class SpringSecurityConfig {
                             authorize.anyRequest().authenticated();
                         }
                 ).httpBasic(Customizer.withDefaults());
+
+
+        http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
 
