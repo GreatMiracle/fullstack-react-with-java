@@ -13,10 +13,10 @@ function LoginComponent() {
     const loginObj = [username, password];
     console.log(loginObj);
     loginAPICall(username, password)
-      .then(() => {
-        console.log("login succesfully");
+      .then((res) => {
+        console.log("login succesfully:::::::::::", res);
 
-        const token = 'Basic ' + window.btoa(username + ":" + password);
+        const token = 'Bearer ' + res.data.accessToken;
 
         storeToken(token);
         saveUserIntoSession(username);
