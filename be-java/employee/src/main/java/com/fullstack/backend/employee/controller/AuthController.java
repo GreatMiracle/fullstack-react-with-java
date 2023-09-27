@@ -1,5 +1,6 @@
 package com.fullstack.backend.employee.controller;
 
+import com.fullstack.backend.employee.dto.JwtAuthResponse;
 import com.fullstack.backend.employee.dto.LoginDto;
 import com.fullstack.backend.employee.dto.RegisterDto;
 import com.fullstack.backend.employee.service.AuthService;
@@ -21,16 +22,19 @@ public class AuthController {
 
     // Build Register REST API
     @PostMapping("/register")
-    public ResponseEntity<String> register(@RequestBody RegisterDto registerDto){
+    public ResponseEntity<String> register(@RequestBody RegisterDto registerDto) {
         String response = authService.register(registerDto);
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 
     // Build Login REST API
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody LoginDto loginDto){
+    public ResponseEntity<JwtAuthResponse> login(@RequestBody LoginDto loginDto) {
         String response = authService.login(loginDto);
-        return new ResponseEntity<>(response, HttpStatus.OK);
+        JwtAuthResponse tokenResponse = JwtAuthResponse.builder()
+                .accessToken(response)
+                .build();
+        return new ResponseEntity<>(tokenResponse, HttpStatus.OK);
     }
 
 
