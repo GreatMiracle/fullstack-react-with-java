@@ -10,6 +10,21 @@ services:
       - '5433:5432'
     volumes:
       - db:/var/lib/postgresql/data
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -d 'user=${MYSQL_USER} dbname=${MYSQL_DATABASE}'" ]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  api:
+    container_name: api
+    build:
+      context: ./api
+      args:
+        progress: plain
+    ports:
+      - "8080:8081"
+
 volumes:
   db:
     driver: local
