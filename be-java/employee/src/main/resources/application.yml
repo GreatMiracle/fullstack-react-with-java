@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/ems-fullstack
+    url: jdbc:postgresql://${POSTGRESQL_CONTAINER_NAME:localhost}:5432/ems-fullstack
 #    url: jdbc:postgresql://localhost:5433/ems-fullstack
     username: ems-fullstack
     password: 123456a@
